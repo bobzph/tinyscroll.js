@@ -204,15 +204,16 @@
             var dateObj = typeof date === 'string' ? new Date(date) : date,
                 mod = dateObj.getMinutes() % 30;
 
-            mod > 30 ?
-            (function() {
-                dateObj.setHours(dateObj.getHours() + 1);
-                dateObj.setMinutes(0);
-            })() :
-            (function() {
-                dateObj.setMinutes(30);
-            })();
-
+            // mod > 30 ?
+            // (function() {
+            //     dateObj.setHours(dateObj.getHours() + 1);
+            //     dateObj.setMinutes(dateObj.getMinutes());
+            // })() :
+            // (function() {
+            //     dateObj.setMinutes(30);
+            // })();
+            dateObj.setHours(dateObj.getHours() + 1);
+            dateObj.setMinutes(dateObj.getMinutes());
             return dateObj;
         },
 
@@ -285,9 +286,9 @@
                     }
                     break;
                 case 'minute':
-                    for (var m = 0; m <= 30;) {
+                    for (var m = 0; m <= 59;) {
                         tmpTpl += '<li data-index="' + m + '">' + m + '</li>';
-                        m += 30;
+                        m += 1;
                     }
                     break;
                 default:
